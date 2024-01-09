@@ -19,8 +19,8 @@ hw.disknames=wd0:1709cffc79da8b06,cd0:,sd0:,sd1:
 #Una que observamos que la referencia al usb es sd0 montamos sd0i (sufijo i) en un directorio
 #temporal con el comando mount.
 
-$mount /dev/sd0i /mnt/usb
+$mount /dev/sd0i /tmp/usb
 
-#Para extrare el usb desmontamos con unmount.
+#Para extraer el usb lo desmontamos con unmount.
  
-$umount /mnt/usb
+$umount /tmp/usb
