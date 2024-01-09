@@ -1,0 +1,26 @@
+# Montar un dispositivo usb
+
+#Una vez incertado el usb el SO guarda este registro el el buffer del sistema (esto lo podemos revisar cona dmesg). 
+#Para el usb revisamos la asociación encontrada a sd* (el asterisco indica cualquier caracter) sobre la salida de 
+#dmesg con el redireccionamiento de salida de la barra vertical. 
+
+$dmesg | grep sd*
+
+#> sd0 at scsibus4 targ 1 lun 0: <Kingston, DataTraveler 3.0, 
+#> SCSI4 0/direct removable serial.09511666F291E82D1E85
+#sd0: 29510MB, 512 bytes/sector, 60437492 sectors
+
+#De forma alternativa con sysctl podemos ver el estado del nucleo del SO y revisamos
+#las referencias al hardware y el contenido de la variable disknames.
+
+$sysctl hw.disknames
+hw.disknames=wd0:1709cffc79da8b06,cd0:,sd0:,sd1:
+
+#Una que observamos que la referencia al usb es sd0 montamos sd0i (sufijo i) en un directorio
+#temporal con el comando mount.
+
+$mount /dev/sd0i /mnt/usb
+
+#Para extrare el usb desmontamos con unmount.
+ 
+$umount /mnt/usb
